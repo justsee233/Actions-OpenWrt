@@ -38,16 +38,21 @@ jobs:
       run: |
         #git clone --depth=1 $REPO_URL /opt/rt-n56u
         git clone --depth=1 $REPO_URL -b $REPO_BRANCH /opt/rt-n56u
+        
+    - name: toolchain
+      run: |
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
+        
     - name: Build Firmware
       run: |
         cd /opt/rt-n56u/trunk
-        
-        sudo ./clear_tree
-        sudo ./build_firmware_modify $TNAME
+        fakeroot ./build_firmware_modify $TNAME
+        #sudo ./clear_tree
+        #sudo ./build_firmware_modify $TNAME
         sudo mv -f images/*.trx /opt/images/
+        
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
