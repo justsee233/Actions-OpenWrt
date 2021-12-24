@@ -16,6 +16,7 @@ env:
   REPO_BRANCH: master
   #编译设备型号K2P-USB,K2P
   PRODUCT: K2P_nano
+  TZ: Asia/Shanghai
 
 jobs:
   build:
@@ -33,6 +34,8 @@ jobs:
         fakeroot kmod cpio git python3-docutils gettext automake autopoint \
         texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
         libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
+        sudo timedatectl set-timezone "$TZ"
+        mkdir -p /opt/images
 
     - name: Clone source code
       run: |
@@ -42,14 +45,14 @@ jobs:
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
-        mkdir -p /opt/images/
         
     - name: Build Firmware
       run: |
-        echo "BUILD_DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+        build_time=$(date +"%Y%m%d%H%M")
+        echo "BUILD_DATE=$build_time" >> $GITHUB_ENV
         cd /opt/rt-n56u/trunk
         fakeroot ./build_firmware_modify $PRODUCT
-        sudo mv -f images/*.trx /opt/images/${{ env.PRODUCT }}-${{ env.BUILD_DATE }}.trx
+        sudo mv -f images/*.trx /opt/images/$PRODUCT-$build_time.trx
         
     - name : Upload packages
       uses: actions/upload-artifact@master
