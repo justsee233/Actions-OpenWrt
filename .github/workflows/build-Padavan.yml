@@ -47,17 +47,17 @@ jobs:
     - name: Build Firmware
       run: |
         #Build_time=$(date '+%Y%m%d%H%M')
-        echo "DEVICE_NAME=$PRODUCT" >> $GITHUB_ENV
+        #echo "DEVICE_NAME=$PRODUCT" >> $GITHUB_ENV
         echo "BUILD_DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
         
         cd /opt/rt-n56u/trunk
         fakeroot ./build_firmware_modify $PRODUCT
         #sudo mv -f images/*.trx /opt/images/
-        sudo mv -f images/*.trx /opt/images/${{ env.DEVICE_NAME }}-${{ env.BUILD_DATE }}.trx
+        sudo mv -f images/*.trx /opt/images/${{ env.PRODUCT }}-${{ env.BUILD_DATE }}.trx
         
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan-${{ PRODUCT }}-${{ env.BUILD_DATE }}
+        name: Padavan-${{ env.PRODUCT }}-${{ env.BUILD_DATE }}.trx
         path: /opt/images
