@@ -44,11 +44,6 @@ jobs:
         sh dl_toolchain.sh
         mkdir -p /opt/images/
         
-    - name: clear_tree
-      run: |
-        cd /opt/rt-n56u/trunk
-        ./clear_tree
-        
     - name: Build Firmware
       run: |
         build_time=$(date '+%Y%m%d%H%M')
