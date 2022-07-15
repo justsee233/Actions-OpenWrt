@@ -1,5 +1,5 @@
 #修改PRODUCT: K2P_nano 中的K2P_nano为你需要编译的型号，注意名称要与configs/templates/目录下的名字相同
-name: Build Padavan
+name: Build Padavan4.4
 
 on:
   repository_dispatch:
@@ -32,20 +32,20 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
-    fakeroot kmod cpio git python3-docutils gettext automake autopoint \
-    texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
-    libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
+        fakeroot kmod cpio git python3-docutils gettext automake autopoint \
+        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
+        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
         sudo timedatectl set-timezone "$TZ"
         mkdir -p /opt/images
 
     - name: Clone source code
       run: |
-        git clone --depth=1 $REPO_URL -b $REPO_BRANCH /opt/rt-n56u
+        #git clone --depth=1 $REPO_URL -b $REPO_BRANCH /opt/rt-n56u
+        git clone --depth=1 $REPO_URL /opt/rt-n56u
         
     - name: toolchain
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
-
         sh dl_toolchain.sh
         
     - name: Build Firmware
