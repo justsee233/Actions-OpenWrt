@@ -11,7 +11,8 @@ on:
         default: 'false'   
 env:
   #源码库选择
-  REPO_URL: https://github.com/padavanonly/rt-n56u.git
+  REPO_URL: https://github.com/meisreallyba/padavan-4.4.git
+  #REPO_URL: https://github.com/padavanonly/rt-n56u.git
   #REPO_URL: https://github.com/hanwckf/rt-n56u.git
   REPO_BRANCH: master
   #编译设备型号K2P-USB,K2P
