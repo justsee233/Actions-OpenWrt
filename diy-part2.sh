@@ -20,6 +20,8 @@
 #sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm-k3|TARGET_DEVICES += phicomm-k3| ; s|# TARGET_DEVICES += phicomm_k3|TARGET_DEVICES += phicomm_k3|' target/linux/bcm53xx/image/Makefile
 
 # 只编译AX5固件
-#sed -i 's|^TARGET_DEVICES|# TARGET_DEVICES|g; s|# TARGET_DEVICES += xiaomi_redmi-ax5-jdcloud|TARGET_DEVICES += xiaomi_redmi-ax5-jdcloud|' target/linux/ipq60xx/image/Makefile
+sed -i 's|^TARGET_DEVICES|# TARGET_DEVICES|g; s|# TARGET_DEVICES += xiaomi_redmi-ax5-jdcloud|TARGET_DEVICES += xiaomi_redmi-ax5-jdcloud|' target/linux/ipq60xx/image/Makefile
 
-sed -i 's|^TARGET_DEVICES|# TARGET_DEVICES|g; s|# TARGET_DEVICES += qihoo_v6|TARGET_DEVICES += qihoo_v6|' target/linux/ipq60xx/image/Makefile
+#sed -i 's|^TARGET_DEVICES|# TARGET_DEVICES|g; s|# TARGET_DEVICES += qihoo_v6|TARGET_DEVICES += qihoo_v6|' target/linux/ipq60xx/image/Makefile
+
+sed -i 's/DEVICE_TITLE := Xiaomi Redmi Router AX5 JDCloud/DEVICE_TITLE := Xiaomi Redmi Router AX5 JDCloud\nDEVICE_DTS := qcom-ipq6018-redmi-ax5-jdcloud/' target/linux/ipq60xx/image/Makefile
