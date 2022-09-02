@@ -24,4 +24,6 @@ sed -i 's|^TARGET_DEVICES|# TARGET_DEVICES|g; s|# TARGET_DEVICES += xiaomi_redmi
 
 #sed -i 's|^TARGET_DEVICES|# TARGET_DEVICES|g; s|# TARGET_DEVICES += qihoo_v6|TARGET_DEVICES += qihoo_v6|' target/linux/ipq60xx/image/Makefile
 
+sed -i '112a $(call Device/UbiFit)' target/linux/ipq60xx/image/Makefile
+
 sed -i 's/DEVICE_TITLE := Xiaomi Redmi Router AX5 JDCloud/DEVICE_TITLE := Xiaomi Redmi Router AX5 JDCloud\nDEVICE_DTS := qcom-ipq6018-redmi-ax5-jdcloud/' target/linux/ipq60xx/image/Makefile
