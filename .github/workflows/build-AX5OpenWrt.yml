@@ -22,7 +22,7 @@ on:
 env:
   #lean的源码
   #REPO_URL: https://github.com/openwrt/openwrt.git
-  REPO_URL: https://github.com/coolsnowwolf/openwrt-gl-ax1800.git
+  REPO_URL: https://github.com/justsee233/openwrt-gl-ax1800.git
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   #K3配置
